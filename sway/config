@@ -1,0 +1,127 @@
+# 丢弃 KDE 遗留下来的 socket
+exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
+# 自启动
+exec fcitx5 -d
+exec clash-verge
+# exec seafile-applet
+exec_always waybar
+
+input "1267:12691:hid-over-i2c_04F3:3193_Touchpad" {
+    tap enabled
+    scroll_method two_finger
+    natural_scroll enabled
+    tap_button_map lrm
+    dwt enabled
+}
+
+font pango:LXGW WenKai 16
+default_border pixel 2
+
+####常量设置
+#设置功能键WIN
+set $mod Mod4
+#设置启动程序为wofi
+set $menu wofi --show run | xargs swaymsg exec --
+#设置浏览器为firefox
+set $browser firefox
+#设置终端为foot
+set $terminal foot
+#设置截屏为grim
+set $screenshot grim ~Pictures/screenshots/sc-$(date +"%Y-%m-%d-%H-%M-%S").png
+#设置屏幕选区为slurp&grim
+set $screenclip slurp | grim -g - ~/Pictures/screenshots/sc-$(date +"%Y-%m-%d-%H-%M-%S").png
+
+# 设置工作区数量和名称
+set $ws1 "1: " # Web Browser
+set $ws2 "2: " # Terminal
+set $ws3 "3: " # Editor
+set $ws4 "4: " # File Manager
+set $ws5 "5: " # Media Player
+set $ws6 "6: " # Chat/Messaging
+set $ws7 "7: " # Music Player
+set $ws8 "8: " # Email Client
+set $ws9 "9: " # Miscellaneous
+
+####快捷键
+
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+
+# 设置工作区绑定
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+#bindsym $mod+Shift+9 move container to workspace number 9
+
+#亮度减少5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > /tmp/wob
+#亮度增加5%
+bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > /tmp/wob
+#静音
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+#音量增加5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pamixer --get-volume > /tmp/wob
+#音量减少5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pamixer --get-volume > /tmp/wob
+
+# 设置应用程序启动绑定
+bindsym $mod+Return exec $terminal
+bindsym $mod+d exec $menu
+bindsym $mod+q kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+#退出sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+#打开浏览器
+bindsym $mod+Shift+Return exec $browser
+#截取当前屏
+bindsym --no-repeat $mod+Print exec $screenshot
+#截取可选区域
+bindsym --no-repeat $mod+Shift+s exec $screenclip
+
+floating_modifier $mod normal
+
+#水平拆分
+bindsym $mod+Shift+9 splith
+#垂直拆分
+bindsym $mod+Shift+0 splitv
+#全屏
+bindsym $mod+f fullscreen
+bindsym $mod+t floating toggle
+#调整大小
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+#设置背景图片
+exec_always ~/.config/sway/wallpaper.sh

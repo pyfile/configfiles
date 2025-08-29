@@ -1,0 +1,27 @@
+window {
+    opacity: 0.9;
+    background-color: #333333;
+    font-family: "Sarasa Gothic SC";
+    font-size: 24px;
+}
+
+#input {
+    border: none;
+    color: #FFFFFF;
+    background-color: #555555;
+}
+
+#outer-box {
+    margin: 10px;
+    background-color: #333333;
+}
+
+#scroll {
+    margin: 5px 0px;
+    font-size: 24px;
+    color: #ccc;
+}
+
+#scroll label {
+    margin: 2px 0px;
+}
