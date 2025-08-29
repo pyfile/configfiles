@@ -178,6 +178,7 @@ window#waybar.empty #window {
     color: @sky;
     border-radius: 20px;
     margin: 8px 10px;
+    font-size: 24px;
 }
 
 #backlight {

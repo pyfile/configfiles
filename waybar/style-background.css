@@ -62,7 +62,7 @@ window#waybar {
     border-style: solid;
     background-color: @base;
     opacity: 1;
-    border-radius: 10px;
+    border-radius: 20px;
     margin: 8px 0px 8px 8px;
     padding: 0px 10px;
 }
@@ -114,25 +114,25 @@ window#waybar {
    * -------------------------------------------------------------------------- */
 
 #mode {
-    border-radius: 10px;
+    border-radius: 20px;
     color: @mauve;
     margin-right: 5px;
 }
 
 #custom-cava-internal {
-    border-radius: 10px;
+    border-radius: 20px;
     color: @mauve;
 }
 
 #mpd {
-    border-radius: 10px;
+    border-radius: 20px;
     color: @mauve;
     margin-left: 5px;
     background-color: rgba(0, 0, 0, 0);
 }
 
 #mpd.2 {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 20px 0px 0px 20px;
     margin: 8px 0px 8px 6px;
     padding: 4px 12px 4px 10px;
 }
@@ -144,7 +144,7 @@ window#waybar {
 }
 
 #mpd.4 {
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 20px 20px 0px;
     margin: 8px 0px 8px 0px;
     padding: 4px 10px 4px 14px;
 }
@@ -157,7 +157,7 @@ window#waybar {
 }
 
 #window {
-    border-radius: 10px;
+    border-radius: 20px;
     color: @base;
     margin-left: 5px;
     margin-right: 5px;
@@ -169,14 +169,14 @@ window#waybar.empty #window {
 }
 
 #custom-swap {
-    border-radius: 10px;
+    border-radius: 20px;
     color: @base;
     margin-left: 10px;
     background-color: @mauve;
 }
 
 #custom-background {
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 20px 20px 0px;
     background-color: @base;
     color: white;
     padding: 5px 14px 5px 5px;
@@ -185,7 +185,7 @@ window#waybar.empty #window {
 #clock {
     /* background-color:#a3be8c; */
     color: @sky;
-    border-radius: 10px;
+    border-radius: 20px;
     margin: 8px 10px;
 }
 
@@ -198,7 +198,7 @@ window#waybar.empty #window {
 #battery {
     color: @green;
     /* border-bottom: 2px solid #d8dee9; */
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 20px 20px 0;
     margin-right: 10px;
 }
 
@@ -259,7 +259,7 @@ window#waybar.empty #window {
 #network {
     color: @green;
     /* border-bottom: 2px solid @green; */
-    border-radius: 10px;
+    border-radius: 20px;
     margin-right: 5px;
 }
 
@@ -281,7 +281,7 @@ window#waybar.empty #window {
 #temperature {
     color: @teal;
     /* border-bottom: 2px solid @teal; */
-    border-radius: 10px 0 0 10px;
+    border-radius: 20px 0 0 20px;
 }
 
 #temperature.critical {
@@ -292,13 +292,13 @@ window#waybar.empty #window {
 #idle_inhibitor {
     background-color: #ebcb8b;
     color: @base;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 #tray {
     /* background-color: @base; */
     margin: 8px 10px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 #custom-launcher,
@@ -307,14 +307,14 @@ window#waybar.empty #window {
 #custom-launcher {
     background-color: shade(@base, 1.1);
     color: @mauve;
-    border-radius: 0px 15px 0px 0px;
+    border-radius: 0px 20px 0px 0px;
     padding: 5px 10px 5px 10px;
 }
 
 #custom-power {
     color: @base;
     background-color: @red;
-    border-radius: 10px;
+    border-radius: 20px;
     margin-left: 5px;
     margin-right: 15px;
     padding: 5px 10px;
@@ -332,7 +332,7 @@ window#waybar.empty #window {
 #custom-keyboard-layout {
     color: @peach;
     /* border-bottom: 2px solid @peach; */
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 20px 20px 0;
     margin-right: 10px;
 }
 
