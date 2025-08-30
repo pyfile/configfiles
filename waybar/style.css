@@ -23,7 +23,7 @@
     color: @lavender;
     border: 0;
     padding: 0 0;
-    font-family: "Sarasa Gothic SC", "LXGW WenKai GB", "Cascadia Code", "Cascadia Code NF", "Noto Sans CJK SC", sans-serif;
+    font-family: "CaskaydiaCove NFM", "Sarasa Gothic SC", "LXGW WenKai GB", "Cascadia Code", "Noto Sans CJK SC", sans-serif;
 }
 
 window#waybar {

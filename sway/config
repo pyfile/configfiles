@@ -6,7 +6,11 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_C
 exec fcitx5 -d
 exec clash-verge
 # exec seafile-applet
-exec_always waybar
+# exec waybar -d
+
+bar {
+	swaybar_command waybar
+}
 
 input "1267:12691:hid-over-i2c_04F3:3193_Touchpad" {
     tap enabled
