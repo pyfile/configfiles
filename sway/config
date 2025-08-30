@@ -129,3 +129,13 @@ mode "resize" {
 
 #设置背景图片
 exec_always ~/.config/sway/wallpaper.sh
+
+#设置锁屏和睡眠
+set $lockman exec zsh ~/.config/sway/lockman.sh
+bindsym $mod+l exec $lockman
+
+# exec swayidle -w \
+#	timeout 300 'swaymsg "output * dpms off"' \
+#	timeout 600 'systemctl suspend' \
+#	resume 'swaymsg "output * dpms on"' \
+#	before-sleep 'swaylock -c 3cb371'
