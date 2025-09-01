@@ -7,6 +7,8 @@ exec fcitx5 -d
 exec clash-verge
 # exec seafile-applet
 # exec waybar -d
+output eDP-1 scale 1.2
+
 
 bar {
 	swaybar_command waybar
@@ -27,7 +29,7 @@ default_border pixel 2
 #设置功能键WIN
 set $mod Mod4
 #设置启动程序为wofi
-set $menu wofi --show run | xargs swaymsg exec --
+set $menu wofi --show drun
 #设置浏览器为firefox
 set $browser firefox
 #设置终端为foot

@@ -1,3 +1,4 @@
 width=600
 height=400
-mode=run
+mode=drun
+allow_image=true
