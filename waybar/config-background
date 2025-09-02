@@ -29,6 +29,7 @@
     // "disk",
     "group/hardware",
     "battery",
+    "custom/notification",
     "network",
     "idle_inhibitor",
     "custom/power"

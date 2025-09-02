@@ -336,6 +336,12 @@ window#waybar.empty #window {
     margin-right: 10px;
 }
 
+#custom-notification {
+    font-family: "CaskaydiaCove NFM";
+    color: @green;
+    border-radius: 20px;
+    margin-right: 5px;
+}
 
 
 /* window#waybar {
