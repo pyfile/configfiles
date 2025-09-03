@@ -1,14 +1,17 @@
 # 丢弃 KDE 遗留下来的 socket
-exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+# exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # 自启动
 exec fcitx5 -d
 exec clash-verge
+exec /home/bohr/Software/sway-alternating-layout/alternating_layouts.py
 # exec seafile-applet
 # exec waybar -d
 output eDP-1 scale 1.2
 
+# Notification Daemon
+exec swaync
 
 bar {
 	swaybar_command waybar
@@ -81,6 +84,9 @@ bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 #bindsym $mod+Shift+9 move container to workspace number 9
+
+# Toggle control center
+bindsym $mod+a exec swaync-client -t -sw
 
 #亮度减少5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > /tmp/wob

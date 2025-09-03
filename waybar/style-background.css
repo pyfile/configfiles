@@ -23,7 +23,7 @@
     color: @lavender;
     border: 0;
     padding: 0 0;
-    font-family: "Sarasa Gothic SC", "LXGW WenKai GB", "Cascadia Code", "Cascadia Code NF", "Noto Sans CJK SC", sans-serif;
+    font-family: "NotoSans NF", "Sarasa Gothic SC", "LXGW WenKai GB", "Cascadia Code", "Cascadia Code NF", "Noto Sans CJK SC", sans-serif;
     transition: all 0.5s ease;
 }
 
@@ -337,7 +337,7 @@ window#waybar.empty #window {
 }
 
 #custom-notification {
-    font-family: "CaskaydiaCove NFM";
+    font-family: "NotoSans NF";
     color: @green;
     border-radius: 20px;
     margin-right: 5px;

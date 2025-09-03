@@ -1,9 +1,9 @@
 {
   "layer": "top", // Waybar at top layer
   "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 48,
+  "height": 32,
   "margin": "-5 -5 -5 -5",
-  //"width": 1350, // Waybar width
+  //"width": 1920, // Waybar width
   // Choose the order of the modules idle_inhibitor
   "modules-left": [
     "custom/launcher",
