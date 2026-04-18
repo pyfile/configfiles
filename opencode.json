@@ -1,0 +1,186 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "provider": {
+        "bailian-coding-plan": {
+            "npm": "@ai-sdk/anthropic",
+            "name": "Model Studio Coding Plan",
+            "options": {
+                "baseURL": "your url",
+                "apiKey": "your api key"
+            },
+            "models": {
+                "qwen3.6-plus": {
+                    "name": "Qwen3.6 Plus",
+                    "modalities": {
+                        "input": ["text", "image"],
+                        "output": ["text"]
+                    },
+                    "options": {
+                        "thinking": {
+                            "type": "enabled",
+                            "budgetTokens": 8192
+                        }
+                    },
+                    "limit": {
+                        "context": 1000000,
+                        "output": 65536
+                    }
+                },
+                "qwen3.5-plus": {
+                    "name": "Qwen3.5 Plus",
+                    "modalities": {
+                        "input": ["text", "image"],
+                        "output": ["text"]
+                    },
+                    "options": {
+                        "thinking": {
+                            "type": "enabled",
+                            "budgetTokens": 8192
+                        }
+                    },
+                    "limit": {
+                        "context": 1000000,
+                        "output": 65536
+                    }
+                },
+                "qwen3-max-2026-01-23": {
+                    "name": "Qwen3 Max 2026-01-23",
+                    "modalities": {
+                        "input": ["text"],
+                        "output": ["text"]
+                    },
+                    "limit": {
+                        "context": 262144,
+                        "output": 32768
+                    }
+                },
+                "qwen3-coder-next": {
+                    "name": "Qwen3 Coder Next",
+                    "modalities": {
+                        "input": ["text"],
+                        "output": ["text"]
+                    },
+                    "limit": {
+                        "context": 262144,
+                        "output": 65536
+                    }
+                },
+                "qwen3-coder-plus": {
+                    "name": "Qwen3 Coder Plus",
+                    "modalities": {
+                        "input": ["text"],
+                        "output": ["text"]
+                    },
+                    "limit": {
+                        "context": 1000000,
+                        "output": 65536
+                    }
+                },
+                "MiniMax-M2.5": {
+                    "name": "MiniMax M2.5",
+                    "modalities": {
+                        "input": ["text"],
+                        "output": ["text"]
+                    },
+                    "options": {
+                        "thinking": {
+                            "type": "enabled",
+                            "budgetTokens": 8192
+                        }
+                    },
+                    "limit": {
+                        "context": 196608,
+                        "output": 24576
+                    }
+                },
+                "glm-5": {
+                    "name": "GLM-5",
+                    "modalities": {
+                        "input": ["text"],
+                        "output": ["text"]
+                    },
+                    "options": {
+                        "thinking": {
+                            "type": "enabled",
+                            "budgetTokens": 8192
+                        }
+                    },
+                    "limit": {
+                        "context": 202752,
+                        "output": 16384
+                    }
+                },
+                "glm-4.7": {
+                    "name": "GLM-4.7",
+                    "modalities": {
+                        "input": ["text"],
+                        "output": ["text"]
+                    },
+                    "options": {
+                        "thinking": {
+                            "type": "enabled",
+                            "budgetTokens": 8192
+                        }
+                    },
+                    "limit": {
+                        "context": 202752,
+                        "output": 16384
+                    }
+                },
+                "kimi-k2.5": {
+                    "name": "Kimi K2.5",
+                    "modalities": {
+                        "input": ["text", "image"],
+                        "output": ["text"]
+                    },
+                    "options": {
+                        "thinking": {
+                            "type": "enabled",
+                            "budgetTokens": 8192
+                        }
+                    },
+                    "limit": {
+                        "context": 262144,
+                        "output": 32768
+                    }
+                }
+            }
+        }
+    },
+    "permission": {
+    // 文件读取权限
+    	"read": {
+      		"*": "allow",                    // 默认允许
+      		"*.env": "deny",                 // 禁止读取 .env
+      		"*.env.*": "deny",               // 禁止读取 .env.local 等
+      		"*.env.example": "allow"         // 允许读取示例文件
+    	},
+
+    // 文件编辑权限
+    	"edit": "ask",                     // 修改前询问
+
+    // 命令执行权限
+    	"bash": {
+      		"*": "ask",                      // 默认询问
+      		"git status": "allow",           // 安全命令直接放行
+      		"git diff": "allow",
+      		"npm test": "allow",
+      		"rm -rf": "deny"                 // 危险命令禁止
+    		}
+    	},
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      ".git/**",
+      ".next/**",
+      "build/**",
+      "target/**",
+      "*.log"
+    ]
+  },
+  "compaction": {
+    "auto": true,      // 上下文满时自动压缩
+    "prune": true      // 删除旧的工具输出节省 token
+  }
+}
