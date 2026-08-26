@@ -1,0 +1,11 @@
+Bootstrap: docker
+From: dockerproxy.net/library/ubuntu:latest
+
+%post
+    apt-get update && apt-get install -y \
+        git \
+        curl \
+        build-essential \
+        ca-certificates
+
+    curl -LsSf https://astral.sh/uv/install.sh | sh
