@@ -1,0 +1,123 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "provider": {
+    	"myprovider": {
+      		"npm": "@ai-sdk/openai-compatible",
+      		"name": "sophnet",
+      		"options": {
+        		"baseURL": "https://www.sophnet.com/api/open-apis/v1",
+        		"apiKey": "your_apiKey"
+      		},
+      		"models": {
+        		"deepseek-v4-pro-new": {
+          			"name": "DeepSeek-V4-Pro-0813",
+				"limit": {
+					"context": 1048576,
+					"output": 262144
+				},
+				"options":{
+					"thinking":{
+						"type": "enabled",
+						"budgetTokens": 8192
+					}
+				}
+        		},
+        		"deepseek-v4-flash-new": {
+          			"name": "DeepSeek-V4-Flash-0731",
+				"limit": {
+					"context": 1048576,
+					"output": 262144
+				},
+				"options":{
+					"thinking":{
+						"type": "enabled",
+						"budgetTokens": 8192
+					}
+				}
+        		},
+        		"deepseek-v4-flash-vision": {
+          			"name": "DeepSeek-V4-Flash-Vision-Exp",
+				"modalities":{
+					"input": ["text", "image"],
+					"output": ["text"]
+				},
+				"limit": {
+					"context": 1048576,
+					"output": 262144
+				},
+				"options":{
+					"thinking":{
+						"type": "enabled",
+						"budgetTokens": 8192
+					}
+				}
+        		},
+        		"deepseek-v4-pro-old": {
+          			"name": "DeepSeek-V4-Pro",
+				"limit": {
+					"context": 1048576,
+					"output": 262144
+				},
+				"options":{
+					"thinking":{
+						"type": "enabled",
+						"budgetTokens": 8192
+					}
+				}
+        		},
+        		"deepseek-v4-flash-old": {
+          			"name": "DeepSeek-V4-Flash",
+				"limit": {
+					"context": 1048576,
+					"output": 262144
+				},
+				"options":{
+					"thinking":{
+						"type": "enabled",
+						"budgetTokens": 8192
+					}
+				}
+        		}
+      		}
+    	}
+    },
+    "permission": {
+    // 文件读取权限
+    	"read": {
+      		"*": "allow",                    // 默认允许
+      		"*.env": "deny",                 // 禁止读取 .env
+      		"*.env.*": "deny",               // 禁止读取 .env.local 等
+      		"*.env.example": "allow"         // 允许读取示例文件
+    	},
+
+    // 文件编辑权限
+    	"edit": "ask",                     // 修改前询问
+
+    // 命令执行权限
+    	"bash": {
+      		"*": "ask",                      // 默认询问
+      		"git status": "allow",           // 安全命令直接放行
+      		"git diff": "allow",
+      		"npm test": "allow",
+      		"rm -rf": "deny"                 // 危险命令禁止
+    		}
+    	},
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      ".git/**",
+      ".next/**",
+      "build/**",
+      "target/**",
+      "*.log"
+    ]
+  },
+  "compaction": {
+    "auto": true,      // 上下文满时自动压缩
+    "prune": true      // 删除旧的工具输出节省 token
+  },
+  "plugin": [
+    "opencode-visual-cache@latest"
+  ]
+}
