@@ -6,37 +6,11 @@
       		"name": "sophnet",
       		"options": {
         		"baseURL": "https://www.sophnet.com/api/open-apis/v1",
-        		"apiKey": "your_apiKey"
+        		"apiKey": "your_APIkey"
       		},
       		"models": {
-        		"deepseek-v4-pro-new": {
-          			"name": "DeepSeek-V4-Pro-0813",
-				"limit": {
-					"context": 1048576,
-					"output": 262144
-				},
-				"options":{
-					"thinking":{
-						"type": "enabled",
-						"budgetTokens": 8192
-					}
-				}
-        		},
-        		"deepseek-v4-flash-new": {
-          			"name": "DeepSeek-V4-Flash-0731",
-				"limit": {
-					"context": 1048576,
-					"output": 262144
-				},
-				"options":{
-					"thinking":{
-						"type": "enabled",
-						"budgetTokens": 8192
-					}
-				}
-        		},
-        		"deepseek-v4-flash-vision": {
-          			"name": "DeepSeek-V4-Flash-Vision-Exp",
+        		"deepseek-flash": {
+          			"name": "DeepSeek-Flash",
 				"modalities":{
 					"input": ["text", "image"],
 					"output": ["text"]
