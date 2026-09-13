@@ -6,51 +6,64 @@
       		"name": "sophnet",
       		"options": {
         		"baseURL": "https://www.sophnet.com/api/open-apis/v1",
-        		"apiKey": "your_APIkey"
+        		"apiKey": "your_APIKEY"
       		},
       		"models": {
         		"deepseek-flash": {
           			"name": "DeepSeek-Flash",
+				"limit": {
+					"context": 1000000,
+					"output": 384000
+				},
+				"options":{
+					"thinking":{
+						"type": "enabled"
+					}
+				},
+				"reasoning_effort": "high"
+        		},
+        		"DeepSeekV4F-Vision": {
+          			"name": "DeepSeek-V4-Flash-Vision-Exp",
 				"modalities":{
 					"input": ["text", "image"],
 					"output": ["text"]
 				},
 				"limit": {
-					"context": 1048576,
-					"output": 262144
+					"context": 1000000,
+					"output": 384000
 				},
 				"options":{
 					"thinking":{
-						"type": "enabled",
-						"budgetTokens": 8192
+						"type": "enabled"
 					}
-				}
+				},
+				"reasoning_effort": "high"
         		},
         		"deepseek-v4-pro-old": {
           			"name": "DeepSeek-V4-Pro",
 				"limit": {
-					"context": 1048576,
-					"output": 262144
+					"context": 1000000,
+					"output": 384000
 				},
 				"options":{
 					"thinking":{
-						"type": "enabled",
-						"budgetTokens": 8192
+						"type": "enabled"
 					}
-				}
+				},
+				"reasoning_effort": "max"
         		},
         		"deepseek-v4-flash-old": {
           			"name": "DeepSeek-V4-Flash",
 				"limit": {
-					"context": 1048576,
-					"output": 262144
+					"context": 1000000,
+					"output": 384000
 				},
 				"options":{
 					"thinking":{
-						"type": "enabled",
-						"budgetTokens": 8192
+						"type": "enabled"
 					}
-				}
+				},
+				"reasoning_effort": "max"
         		}
       		}
     	}
