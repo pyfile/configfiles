@@ -28,11 +28,11 @@
 					}
 				}
         		},
-        		"DeepSeek-V4-Pro": {
-          			"name": "DeepSeek V4 Pro (Preview)",
+        		"DeepSeek-V4-Pro-0813": {
+          			"name": "DeepSeek V4 Pro (0813)",
 				"limit": {
-					"context": 1000000,
-					"output": 384000
+					"context": 1048576,
+					"output": 262144
 				},
 				"options": {
 					"thinking": {
