@@ -116,7 +116,6 @@
     "prune": true      // 删除旧的工具输出节省 token
   },
   "plugin": [
-    "opencode-visual-cache@latest",
-    "opencode-deepseek-thinking-fix"
+    "opencode-visual-cache@latest"
   ]
 }
