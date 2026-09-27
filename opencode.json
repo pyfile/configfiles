@@ -1,105 +1,101 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "provider": {
-    	"Sophnet-deepseek": {
-      		"npm": "@ai-sdk/anthropic",
-      		"name": "Sophnet",
-      		"options": {
-        		"baseURL": "https://www.sophnet.com/api/open-apis/anthropic",
-        		"apiKey": "your_API_KEY"
-      		},
-      		"models": {
-        		"DeepSeek-Flash": {
-          			"name": "DeepSeek Flash (v4.1)",
-				"limit": {
-					"context": 1000000,
-					"output": 384000
-				},
-          			"modalities": {
-            				"input": ["text", "image", "video"],
-            				"output": ["text"]
-          			},
-				"options": {
-					"thinking": {
-						"type": "enabled"
-					},
-					"output_config": {
-						"effort": "high"
-					}
-				}
-        		},
-        		"DeepSeek-V4-Pro-0813": {
-          			"name": "DeepSeek V4 Pro (0813)",
-				"limit": {
-					"context": 1048576,
-					"output": 262144
-				},
-				"options": {
-					"thinking": {
-						"type": "enabled"
-					},
-					"output_config": {
-						"effort": "max"
-					}
-				}
-        		},
-        		"DeepSeek-V4-Flash": {
-          			"name": "DeepSeek V4 Flash (Preview)",
-				"limit": {
-					"context": 1000000,
-					"output": 384000
-				},
-				"options": {
-					"thinking": {
-						"type": "enabled"
-					},
-					"output_config": {
-						"effort": "max"
-					}
-				}
-        		},
-			"glm-5.3-flash": {
-          			"name": "GLM 5.3 Flash",
-				"reasoning": true,
-				"tool_call": true,
-          			"limit": {
-            				"context": 1048576,
-            				"output": 131072
-          			},
-          			"modalities": {
-            				"input": ["text", "image", "video"],
-            				"output": ["text"]
-          			},
-          			"options": {
-					"output_config": {
-						"effort": "max"
-					}
-          			}
-        		}
-      		}
-    	}
-    },
-    "permission": {
+  "$schema": "https://opencode.ai/config.json",
+  "providers": {
+    "Sophnet-deepseek": {
+      "package": "aisdk:@ai-sdk/anthropic",
+      "name": "Sophnet",
+      "settings": {
+        "baseURL": "https://www.sophnet.com/api/open-apis/anthropic",
+        "apiKey": "your_API_KEY"
+      },
+      "models": {
+        "DeepSeek-Flash": {
+          "name": "DeepSeek Flash (v4.1)",
+          "limit": {
+            "context": 1000000,
+            "output": 384000
+          },
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image", "video"],
+            "output": ["text"]
+          },
+          "settings": {
+            "thinking": {
+              "type": "enabled"
+            },
+            "output_config": {
+              "effort": "high"
+            }
+          }
+        },
+        "DeepSeek-V4-Pro-0813": {
+          "name": "DeepSeek V4 Pro (0813)",
+          "limit": {
+            "context": 1048576,
+            "output": 262144
+          },
+          "settings": {
+            "thinking": {
+              "type": "enabled"
+            },
+            "output_config": {
+              "effort": "max"
+            }
+          }
+        },
+        "DeepSeek-V4-Flash": {
+          "name": "DeepSeek V4 Flash (Preview)",
+          "limit": {
+            "context": 1000000,
+            "output": 384000
+          },
+          "settings": {
+            "thinking": {
+              "type": "enabled"
+            },
+            "output_config": {
+              "effort": "max"
+            }
+          }
+        },
+        "glm-5.3-flash": {
+          "name": "GLM 5.3 Flash",
+          "limit": {
+            "context": 1048576,
+            "output": 131072
+          },
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image", "video"],
+            "output": ["text"]
+          },
+          "settings": {
+            "output_config": {
+              "effort": "max"
+            }
+          }
+        }
+      }
+    }
+  },
+  "permissions": [
     // 文件读取权限
-    	"read": {
-      		"*": "allow",                    // 默认允许
-      		"*.env": "deny",                 // 禁止读取 .env
-      		"*.env.*": "deny",               // 禁止读取 .env.local 等
-      		"*.env.example": "allow"         // 允许读取示例文件
-    	},
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*.env", "effect": "deny" },
+    { "action": "read", "resource": "*.env.*", "effect": "deny" },
+    { "action": "read", "resource": "*.env.example", "effect": "allow" },
 
     // 文件编辑权限
-    	"edit": "ask",                     // 修改前询问
+    { "action": "edit", "resource": "*", "effect": "ask" },
 
     // 命令执行权限
-    	"bash": {
-      		"*": "ask",                      // 默认询问
-      		"git status": "allow",           // 安全命令直接放行
-      		"git diff": "allow",
-      		"npm test": "allow",
-      		"rm -rf": "deny"                 // 危险命令禁止
-    		}
-    	},
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git status", "effect": "allow" },
+    { "action": "shell", "resource": "git diff", "effect": "allow" },
+    { "action": "shell", "resource": "npm test", "effect": "allow" },
+    { "action": "shell", "resource": "rm -rf", "effect": "deny" }
+  ],
   "watcher": {
     "ignore": [
       "node_modules/**",
@@ -112,10 +108,9 @@
     ]
   },
   "compaction": {
-    "auto": true,      // 上下文满时自动压缩
-    "prune": true      // 删除旧的工具输出节省 token
+    "auto": true
   },
-  "plugin": [
+  "plugins": [
     "opencode-visual-cache@latest"
   ]
 }
