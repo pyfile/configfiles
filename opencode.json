@@ -2,8 +2,8 @@
   "$schema": "https://opencode.ai/config.json",
   "providers": {
     "Sophnet-deepseek": {
-      "package": "aisdk:@ai-sdk/anthropic",
       "name": "Sophnet",
+      "package": "aisdk:@ai-sdk/anthropic",
       "settings": {
         "baseURL": "https://www.sophnet.com/api/open-apis/anthropic",
         "apiKey": "your_API_KEY"
@@ -11,14 +11,16 @@
       "models": {
         "DeepSeek-Flash": {
           "name": "DeepSeek Flash (v4.1)",
-          "limit": {
-            "context": 1000000,
-            "output": 384000
-          },
           "capabilities": {
+            // V2 要求 capabilities 同时给出 tools/input/output；
+            // V1 未声明 tool_call 时等效为 true
             "tools": true,
             "input": ["text", "image", "video"],
             "output": ["text"]
+          },
+          "limit": {
+            "context": 1000000,
+            "output": 384000
           },
           "settings": {
             "thinking": {
@@ -61,14 +63,14 @@
         },
         "glm-5.3-flash": {
           "name": "GLM 5.3 Flash",
-          "limit": {
-            "context": 1048576,
-            "output": 131072
-          },
           "capabilities": {
             "tools": true,
             "input": ["text", "image", "video"],
             "output": ["text"]
+          },
+          "limit": {
+            "context": 1048576,
+            "output": 131072
           },
           "settings": {
             "output_config": {
@@ -81,20 +83,21 @@
   },
   "permissions": [
     // 文件读取权限
-    { "action": "read", "resource": "*", "effect": "allow" },
-    { "action": "read", "resource": "*.env", "effect": "deny" },
-    { "action": "read", "resource": "*.env.*", "effect": "deny" },
-    { "action": "read", "resource": "*.env.example", "effect": "allow" },
+    // V2 规则按顺序合并，最后匹配的规则生效，因此宽泛规则在前、具体例外在后
+    { "action": "read", "resource": "*", "effect": "allow" },              // 默认允许
+    { "action": "read", "resource": "*.env", "effect": "deny" },           // 禁止读取 .env
+    { "action": "read", "resource": "*.env.*", "effect": "deny" },         // 禁止读取 .env.local 等
+    { "action": "read", "resource": "*.env.example", "effect": "allow" },  // 允许读取示例文件
 
     // 文件编辑权限
-    { "action": "edit", "resource": "*", "effect": "ask" },
+    { "action": "edit", "resource": "*", "effect": "ask" },               // 修改前询问
 
-    // 命令执行权限
-    { "action": "shell", "resource": "*", "effect": "ask" },
-    { "action": "shell", "resource": "git status", "effect": "allow" },
+   // 命令执行权限
+    { "action": "shell", "resource": "*", "effect": "ask" },              // 默认询问
+    { "action": "shell", "resource": "git status", "effect": "allow" },   // 安全命令直接放行
     { "action": "shell", "resource": "git diff", "effect": "allow" },
     { "action": "shell", "resource": "npm test", "effect": "allow" },
-    { "action": "shell", "resource": "rm -rf", "effect": "deny" }
+    { "action": "shell", "resource": "rm -rf", "effect": "deny" }          // 危险命令禁止
   ],
   "watcher": {
     "ignore": [
@@ -108,7 +111,7 @@
     ]
   },
   "compaction": {
-    "auto": true
+    "auto": true // 上下文满时自动压缩
   },
   "plugins": [
     "opencode-visual-cache@latest"
