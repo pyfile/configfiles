@@ -92,7 +92,7 @@
     // 文件编辑权限
     { "action": "edit", "resource": "*", "effect": "ask" },               // 修改前询问
 
-    // 命令执行权限
+   // 命令执行权限
     { "action": "shell", "resource": "*", "effect": "ask" },              // 默认询问
     { "action": "shell", "resource": "git status", "effect": "allow" },   // 安全命令直接放行
     { "action": "shell", "resource": "git diff", "effect": "allow" },
