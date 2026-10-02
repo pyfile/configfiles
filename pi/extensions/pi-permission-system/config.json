@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
+  
+  // 运行时开关（可选）
+  "debugLog": false,
+  "permissionReviewLog": true,
+  "yoloMode": false,
+
+  "permission": {
+    // 全局兜底策略：未明确规定的操作都询问
+    "*": "ask",
+
+    // path 层面：跨工具的文件路径安全网
+    "path": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow",
+      "~/.ssh/*": "deny"
+    },
+
+    // 各工具层面的策略
+    "read": "allow",
+    "edit": "ask",
+    "get_search_content": "allow",
+    "fetch_content": "allow",
+    "web_search": "allow",
+    "web_search_enhanced": "allow",
+
+
+    // bash 层面：命令模式匹配
+    "bash": {
+      "git status": "allow",
+      "git diff": "allow",
+      "npm test": "allow",
+      "rm -rf *": "ask",
+      "sudo *": "ask"
+    },
+
+    "external_directory": "ask"
+  }
+}

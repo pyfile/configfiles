@@ -1,0 +1,41 @@
+{
+  "provider": [
+    ["querit", 1000],
+    ["firecrawl", 500],
+    ["serpapi", 250],
+    ["exa", 1000],
+    ["tavily", 1000],
+    ["anysearch", 2000],
+    ["tinyfish", 4000]
+  ],
+  "searchRouting": {
+    "providers": [
+      "tinyfish",
+      "anysearch",
+      "exa",
+      "tavily",
+      "querit",
+      "firecrawl",
+      "serpapi"
+    ],
+    "useCurrentModel": false,
+    "fallbackOn": ["transient", "quota", "network", "invalid-response"]
+  },
+  "fetchRouting": {
+    "providers": [
+      "http", 
+      "querit",
+      "firecrawl",
+      "tinyfish"
+    ],
+    "allowRemoteHostedProviders": false
+  }, 
+  "queritApiKey": "apikey1",
+  "firecrawlApiKey": "apikey2",
+  "serpapiApiKey": "apikey3",
+  "exaApiKey": "apikey4",
+  "tavilyApiKey": "apikey5",
+  "anysearchApiKey": "apikey6",
+  "tinyfishApiKey": "apikey7",
+  "retry": 3
+}

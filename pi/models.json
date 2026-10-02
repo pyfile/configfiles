@@ -1,0 +1,78 @@
+{
+  "providers": {
+    "Sophnet-deepseek": {
+      "baseUrl": "https://www.sophnet.com/api/open-apis/anthropic",
+      "api": "anthropic-messages",
+      "apiKey": "your_API_KEY",
+      "compat": {
+        "supportsDeveloperRole": false
+      },
+      "models": [
+        {
+          "id": "DeepSeek-Flash",
+          "name": "DeepSeek Flash (v4.1)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 1000000,
+          "maxTokens": 384000,
+	  "thinkingLevelMap": {
+	    "off": null,
+	    "minimal": null,
+    	    "low": null,
+    	    "medium": null,
+    	    "high": "high",
+    	    "max": null
+  	  }
+        },
+        {
+          "id": "DeepSeek-V4-Pro-0813",
+          "name": "DeepSeek V4 Pro (0813)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 262144,
+	  "thinkingLevelMap": {
+	    "off": null,
+	    "minimal": null,
+    	    "low": null,
+    	    "medium": null,
+    	    "high": null,
+    	    "max": "max"
+  	  }
+        },
+        {
+          "id": "DeepSeek-V4-Flash",
+          "name": "DeepSeek V4 Flash (Preview)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1000000,
+          "maxTokens": 384000,
+	  "thinkingLevelMap": {
+	    "off": null,
+	    "minimal": null,
+    	    "low": null,
+    	    "medium": null,
+    	    "high": null,
+    	    "max": "max"
+  	  }
+        },
+        {
+          "id": "glm-5.3-flash",
+          "name": "GLM 5.3 Flash",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+	  "thinkingLevelMap": {
+	    "off": null,
+	    "minimal": null,
+    	    "low": null,
+    	    "medium": null,
+    	    "high": null,
+    	    "max": "max"
+  	  }
+        }
+      ]
+    }
+  }
+}
