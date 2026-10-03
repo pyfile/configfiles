@@ -1,0 +1,22 @@
+Bootstrap: docker
+From: dockerproxy.net/library/ubuntu:latest
+
+%environment
+    # Force uv install Python in container /opt/uv/python
+    export UV_PYTHON_INSTALL_DIR=/opt/uv/python
+    # Force uv install tool in container /opt/uv/tools
+    export UV_TOOL_DIR=/opt/uv/tools
+    # Force uv only use Python managed by uv，Exclude System Python
+    export UV_PYTHON_PREFERENCE=only-managed
+    # Prove Python exec path in PATH 
+    export PATH=/opt/uv:/opt/uv/python/bin:/opt/uv/tools/bin:$PATH
+
+%post
+    apt update && apt-get -y install curl build-essential ca-certificates
+
+    # install uv in /opt/uv
+    export UV_PREFIX="/opt/uv"
+    export UV_INSTALL_DIR="${UV_PREFIX}"
+    mkdir -p ${UV_INSTALL_DIR}
+    export INSTALLER_NO_MODIFY_PATH=1
+    curl -LsSf https://astral.sh/uv/install.sh | sh
