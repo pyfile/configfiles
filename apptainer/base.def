@@ -12,7 +12,7 @@ From: dockerproxy.net/library/ubuntu:latest
     export PATH=/opt/uv:/opt/uv/python/bin:/opt/uv/tools/bin:$PATH
 
 %post
-    apt update && apt-get -y install curl git build-essential ca-certificates
+    apt update && apt-get -y install curl build-essential ca-certificates
 
     # 安装 uv 到 /opt/uv
     export UV_PREFIX="/opt/uv"
