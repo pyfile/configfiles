@@ -1,9 +1,32 @@
 {
   "providers": {
+    "Intern-ai-deepseek": {
+      "baseUrl": "https://discovery-api.intern-ai.org.cn",
+      "api": "anthropic-messages",
+      "apiKey": "yourapikey",
+      "models": [
+        {
+	  "id": "deepseek-v4-flash-0731",
+	  "name": "DeepSeekV4f-0731",
+          "reasoning": true,
+	  "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 384000,
+	  "thinkingLevelMap": {
+	    "off": null,
+	    "minimal": null,
+    	    "low": null,
+    	    "medium": null,
+    	    "high": null,
+    	    "max": "max"
+  	  }
+	}
+      ]
+    },
     "Sophnet-deepseek": {
       "baseUrl": "https://www.sophnet.com/api/open-apis/anthropic",
       "api": "anthropic-messages",
-      "apiKey": "your_API_KEY",
+      "apiKey": "yourapikey",
       "compat": {
         "supportsDeveloperRole": false
       },
