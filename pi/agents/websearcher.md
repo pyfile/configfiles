@@ -7,7 +7,7 @@ permission:
   web_search_enhanced: deny
   get_search_content: allow
   fetch_content: deny
-model: Sophnet-deepseek/glm-5.3-flash
+model: Intern-ai-deepseek/deepseek-v4-flash-0731
 thinking: high
 max_turns: 6
 prompt_mode: replace

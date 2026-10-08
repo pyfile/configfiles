@@ -8,7 +8,7 @@ permission:
   get_search_content: allow
   fetch_content: allow
   source_check: allow
-model: Sophnet-deepseek/glm-5.3-flash
+model: Intern-ai-deepseek/deepseek-v4-flash-0731
 thinking: max
 max_turns: 14
 prompt_mode: replace
