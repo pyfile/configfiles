@@ -21,15 +21,9 @@
 
     // 各工具层面的策略
     "read": "allow",
-    "find": "allow",
-    "grep": "allow",
-    "echo": "allow",
-    "head": "allow",
-    "cd": "allow",
     "rtk": "allow",
-    "sort": "allow",
-    "cat": "allow",
     "edit": "ask",
+    "ask_user_question": "ask",
     "get_search_content": "allow",
     "fetch_content": "allow",
     "web_search": "allow",
@@ -44,7 +38,17 @@
       "git diff": "allow",
       "npm test": "allow",
       "rm -rf *": "ask",
-      "sudo *": "ask"
+      "sudo *": "ask",
+      "find *": "allow",
+      "which *": "allow",
+      "grep *": "allow",
+      "echo *": "allow",
+      "head *": "allow",
+      "cd *": "allow",
+      "ls *": "allow",
+      "wc *": "allow",
+      "sort *": "allow",
+      "cat *": "allow"
     },
 
     "external_directory": "ask"
