@@ -21,11 +21,21 @@
 
     // 各工具层面的策略
     "read": "allow",
+    "find": "allow",
+    "grep": "allow",
+    "echo": "allow",
+    "head": "allow",
+    "cd": "allow",
+    "rtk": "allow",
+    "sort": "allow",
+    "cat": "allow",
     "edit": "ask",
     "get_search_content": "allow",
     "fetch_content": "allow",
     "web_search": "allow",
     "web_search_enhanced": "allow",
+    "subagent": "allow",
+    "get_subagent_result": "allow",
 
 
     // bash 层面：命令模式匹配
