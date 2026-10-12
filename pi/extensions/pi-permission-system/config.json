@@ -23,7 +23,7 @@
     "read": "allow",
     "rtk": "allow",
     "edit": "ask",
-    "ask_user_question": "ask",
+    "ask_user_question": "allow",
     "get_search_content": "allow",
     "fetch_content": "allow",
     "web_search": "allow",
