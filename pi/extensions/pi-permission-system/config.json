@@ -22,6 +22,7 @@
     // 各工具层面的策略
     "read": "allow",
     "rtk": "allow",
+    "codemode": "allow",
     "edit": "ask",
     "ask_user_question": "allow",
     "get_search_content": "allow",
@@ -48,6 +49,10 @@
       "ls *": "allow",
       "wc *": "allow",
       "sort *": "allow",
+      "tail *": "allow",
+      "sed *": "allow",
+      "awk *": "allow",
+      "pwd": "allow",
       "cat *": "allow"
     },
 
