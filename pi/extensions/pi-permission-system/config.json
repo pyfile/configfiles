@@ -36,6 +36,8 @@
     // bash 层面：命令模式匹配
     "bash": {
       "git status": "allow",
+      "git rev-parse": "allow",
+      "git --version *": "allow",
       "git diff": "allow",
       "npm test": "allow",
       "rm -rf *": "ask",
