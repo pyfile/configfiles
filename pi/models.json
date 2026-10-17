@@ -3,7 +3,11 @@
     "Intern-ai-deepseek": {
       "baseUrl": "https://discovery-api.intern-ai.org.cn",
       "api": "anthropic-messages",
-      "apiKey": "yourapikey",
+      "apiKey": "your_API_KEY",
+      "compat": {
+        "sendSessionAffinityHeaders": true,
+        "supportsLongCacheRetention": true
+      },
       "models": [
         {
 	  "id": "deepseek-v4-flash-0731",
@@ -19,16 +23,35 @@
     	    "medium": null,
     	    "high": null,
     	    "max": "max"
-  	  }
+  	  },
+	  "cacheControl": true
+	},
+        {
+	  "id": "deepseek-v4-flash-vision",
+	  "name": "DeepSeekV4f-vision",
+          "reasoning": true,
+	  "input": ["text", "image"],
+          "contextWindow": 1048576,
+          "maxTokens": 384000,
+	  "thinkingLevelMap": {
+	    "off": null,
+	    "minimal": null,
+    	    "low": null,
+    	    "medium": null,
+    	    "high": null,
+    	    "max": "max"
+  	  },
+	"cacheControl": true
 	}
       ]
     },
     "Sophnet-deepseek": {
       "baseUrl": "https://www.sophnet.com/api/open-apis/anthropic",
       "api": "anthropic-messages",
-      "apiKey": "yourapikey",
+      "apiKey": "your_API_KEY",
       "compat": {
-        "supportsDeveloperRole": false
+        "sendSessionAffinityHeaders": true,
+        "supportsLongCacheRetention": true
       },
       "models": [
         {
@@ -45,7 +68,8 @@
     	    "medium": null,
     	    "high": "high",
     	    "max": null
-  	  }
+  	  },
+	  "cacheControl": true
         },
         {
           "id": "DeepSeek-V4-Pro-0813",
@@ -61,7 +85,8 @@
     	    "medium": null,
     	    "high": null,
     	    "max": "max"
-  	  }
+  	  },
+	  "cacheControl": true
         },
         {
           "id": "DeepSeek-V4-Flash",
@@ -77,7 +102,8 @@
     	    "medium": null,
     	    "high": null,
     	    "max": "max"
-  	  }
+  	  },
+	  "cacheControl": true
         },
         {
           "id": "glm-5.3-flash",
@@ -93,7 +119,8 @@
     	    "medium": null,
     	    "high": null,
     	    "max": "max"
-  	  }
+  	  },
+	  "cacheControl": true
         }
       ]
     }
