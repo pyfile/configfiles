@@ -3,7 +3,7 @@
     "Intern-ai-deepseek": {
       "baseUrl": "https://discovery-api.intern-ai.org.cn",
       "api": "anthropic-messages",
-      "apiKey": "your_API_KEY",
+      "apiKey": "yourAPIKEY",
       "compat": {
         "sendSessionAffinityHeaders": true,
         "supportsLongCacheRetention": true
@@ -48,7 +48,7 @@
     "Sophnet-deepseek": {
       "baseUrl": "https://www.sophnet.com/api/open-apis/anthropic",
       "api": "anthropic-messages",
-      "apiKey": "your_API_KEY",
+      "apiKey": "yourAPIKEY",
       "compat": {
         "sendSessionAffinityHeaders": true,
         "supportsLongCacheRetention": true
@@ -67,7 +67,7 @@
     	    "low": null,
     	    "medium": null,
     	    "high": "high",
-    	    "max": null
+    	    "max": "max"
   	  },
 	  "cacheControl": true
         },
