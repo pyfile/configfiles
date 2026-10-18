@@ -23,6 +23,7 @@
     "read": "allow",
     "rtk": "allow",
     "codemode": "allow",
+    "todo": "allow",
     "edit": "ask",
     "ask_user_question": "allow",
     "get_search_content": "allow",
