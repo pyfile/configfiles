@@ -10,25 +10,8 @@
       },
       "models": [
         {
-	  "id": "deepseek-v4-flash-0731",
-	  "name": "DeepSeekV4f-0731",
-          "reasoning": true,
-	  "input": ["text"],
-          "contextWindow": 1048576,
-          "maxTokens": 384000,
-	  "thinkingLevelMap": {
-	    "off": null,
-	    "minimal": null,
-    	    "low": null,
-    	    "medium": null,
-    	    "high": null,
-    	    "max": "max"
-  	  },
-	  "cacheControl": true
-	},
-        {
-	  "id": "deepseek-v4-flash-vision",
-	  "name": "DeepSeekV4f-vision",
+	  "id": "deepseek-v4.1-flash-1017",
+	  "name": "DeepSeekV4.1f-1017",
           "reasoning": true,
 	  "input": ["text", "image"],
           "contextWindow": 1048576,
@@ -38,10 +21,10 @@
 	    "minimal": null,
     	    "low": null,
     	    "medium": null,
-    	    "high": null,
+    	    "high": "high",
     	    "max": "max"
   	  },
-	"cacheControl": true
+	  "cacheControl": true
 	}
       ]
     },
