@@ -8,7 +8,7 @@ permission:
   get_search_content: allow
   fetch_content: allow
   source_check: allow
-model: Intern-ai-deepseek/deepseek-v4-flash-0731
+model: Intern-ai-deepseek/deepseek-v4.1-flash-1017
 thinking: max
 max_turns: 16
 prompt_mode: replace

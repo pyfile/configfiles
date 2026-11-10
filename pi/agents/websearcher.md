@@ -7,7 +7,7 @@ permission:
   web_search_enhanced: deny
   get_search_content: allow
   fetch_content: deny
-model: Intern-ai-deepseek/deepseek-v4-flash-0731
+model: Intern-ai-deepseek/deepseek-v4.1-flash-1017
 thinking: high
 max_turns: 8
 prompt_mode: replace

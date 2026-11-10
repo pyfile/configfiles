@@ -34,3 +34,7 @@ When tests fail, classify first:
 - Genuine logic failure: summarize only the precise error back to the model.
 
 If the user states they trust code generation, skip tests beyond static checks unless a concrete risk requires one targeted assertion. Prefer minimal diffs and no test scaffolding.
+
+## Plan before Make Changes
+
+Use Plan Mode to prepare for a complex request before making changes.
