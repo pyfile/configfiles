@@ -21,9 +21,9 @@
 
     // 各工具层面的策略
     "read": "allow",
-    "rtk": "allow",
     "codemode": "allow",
     "todo": "allow",
+    "write": "allow",
     "edit": "ask",
     "ask_user_question": "allow",
     "get_search_content": "allow",
@@ -36,13 +36,24 @@
 
     // bash 层面：命令模式匹配
     "bash": {
-      "git status": "allow",
+      "git status *": "allow",
       "git rev-parse": "allow",
       "git --version *": "allow",
+      "git log *": "allow",
+      "git -C *": "allow",
       "git diff": "allow",
+      "git show *": "allow",
+      "git rebase *": "allow",
+      "git merge *": "allow",
       "npm test": "allow",
       "rm -rf *": "ask",
+      "rm *": "ask",
       "sudo *": "ask",
+      "cp *": "allow",
+      "for *": "allow",
+      "if *": "allow",
+      "tr *": "allow",
+      "date *": "allow",
       "find *": "allow",
       "which *": "allow",
       "grep *": "allow",
@@ -56,6 +67,7 @@
       "sed *": "allow",
       "awk *": "allow",
       "pwd": "allow",
+      "mkdir": "allow",
       "cat *": "allow"
     },
 
