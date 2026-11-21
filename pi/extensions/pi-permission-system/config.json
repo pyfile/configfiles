@@ -72,6 +72,9 @@
       "tail *": "allow",
       "sed *": "allow",
       "awk *": "allow",
+      "node *": "allow",
+      "uniq *": "allow",
+      "curl *": "allow",
       "pwd": "allow",
       "mkdir": "allow",
       "cat *": "allow"
