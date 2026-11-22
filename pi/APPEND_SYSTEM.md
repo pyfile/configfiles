@@ -35,6 +35,18 @@ When tests fail, classify first:
 
 If the user states they trust code generation, skip tests beyond static checks unless a concrete risk requires one targeted assertion. Prefer minimal diffs and no test scaffolding.
 
-## Plan before Make Changes
+## Plan before Make Changes (mandatory)
 
-Use Plan Mode to prepare for a complex request before making changes.
+Before making any modification—including editing files, code, configuration, dependencies, repository state, or running any mutating command—you MUST produce a concrete written plan for user review. Do not edit, write, scaffold, install, migrate, delete, commit, or otherwise change state until the user explicitly approves the plan.
+
+Required flow:
+1. Do read-only investigation as needed (reading files, searching, inspecting state). Do not modify anything.
+2. Draft the plan yourself in plain text, covering: goal, affected files/areas, step-by-step changes, risks/edge cases, verification approach, and open questions.
+3. If during planning you encounter an issue that you believe genuinely requires discussion, use `ask` to ask the user. Do not silently assume.
+4. When the plan is complete, STOP. Present the plan to the user and wait. Do not begin implementation.
+5. Wait for an explicit user response:
+   - If the user gives an execution instruction/approval, execute only the approved plan.
+   - If the user asks for changes, revise the plan, present it again, and stop again.
+6. If implementation reveals a scope change, new uncertainty, or a need to deviate from the approved plan, stop and return to planning for approval.
+
+This applies to every modification, regardless of size or complexity. Never treat silence, vague encouragement, or your own confidence as approval.
