@@ -51,6 +51,8 @@
       "git push *": "allow",
       "git pull *": "allow",
       "git merge-base *": "allow",
+      "git branch *": "allow",
+      "git add *": "allow",
       "npm test": "allow",
       "rm -rf *": "ask",
       "rm *": "ask",
@@ -75,9 +77,12 @@
       "node *": "allow",
       "uniq *": "allow",
       "curl *": "allow",
+      "printf *": "allow",
+      "cat *": "allow",
+      "pdffonts *": "allow",
       "pwd": "allow",
       "mkdir": "allow",
-      "cat *": "allow"
+      "python3": "allow"
     },
 
     "external_directory": "ask"
