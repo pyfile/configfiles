@@ -1,90 +1,196 @@
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
-  
+
   // 运行时开关（可选）
   "debugLog": false,
   "permissionReviewLog": true,
   "yoloMode": false,
 
+  // 设计定位（重要）：
+  //   只要有 write/edit/python3/node 的 allow，就等价于任意代码执行。
+  //   所以 bash 的 ask 规则只负责"防手滑"，真正的边界是下面的
+  //   path_read / path_write 的 deny + external_directory。
   "permission": {
-    // 全局兜底策略：未明确规定的操作都询问
-    "*": "ask",
+    // 全局兜底：未明确规定的操作一律放行（决策 A/B 已按建议确认）
+    "*": "allow",
 
-    // path 层面：跨工具的文件路径安全网
-    "path": {
+    // ===== 密钥/凭据：连读都不给（deny 优先于 ask，且不产生提示）=====
+    "path_read": {
       "*": "allow",
       "*.env": "deny",
       "*.env.*": "deny",
       "*.env.example": "allow",
-      "~/.ssh/*": "deny"
+      "~/.ssh/*": "deny",
+      "~/.aws/*": "deny",
+      "~/.gnupg/*": "deny",
+      "~/.kube/*": "deny",
+      "~/.config/gcloud/*": "deny",
+      "~/.config/gh/*": "deny",
+      "~/.docker/config.json": "deny",
+      "~/.netrc": "deny",
+      "~/.git-credentials": "deny",
+      "~/.npmrc": "deny",
+      "~/.pypirc": "deny",
+      "~/.pi/agent/auth.json": "deny",
+      "id_rsa*": "deny",
+      "id_ed25519*": "deny",
+      "*.pem": "deny",
+      "*.key": "deny",
+      "*.p12": "deny"
     },
 
-    // 各工具层面的策略
+    // ===== 自我提权面 / 持久化面：写入一律 deny =====
+    // 注意：其中包含本配置文件自身，落地后 agent 无法再修改权限配置。
+    "path_write": {
+      "*": "allow",
+      "~/.pi/agent/settings.json": "deny",
+      "~/.pi/agent/APPEND_SYSTEM.md": "deny",
+      "~/.pi/agent/extensions/pi-permission-system/*": "deny",
+      "~/.pi/agent/agents/*": "deny",
+      "~/.pi/agent/skills/*": "deny",
+      "~/.bashrc": "deny",
+      "~/.zshrc": "deny",
+      "~/.profile": "deny",
+      "~/.bash_profile": "deny",
+      ".git/hooks/*": "deny",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow",
+      "~/.ssh/*": "deny",
+      "~/.aws/*": "deny",
+      "~/.netrc": "deny",
+      "~/.git-credentials": "deny",
+      "~/.pi/agent/auth.json": "deny"
+    },
+
+    // ===== 工具面：其余 allow（决策 A：edit 改为 allow）=====
     "read": "allow",
-    "codemode": "allow",
-    "todo": "allow",
     "write": "allow",
-    "edit": "ask",
+    "edit": "allow",
+    "find": "allow",
+    "grep": "allow",
+    "ls": "allow",
+    "todo": "allow",
+    "codemode": "allow",
     "ask_user_question": "allow",
-    "get_search_content": "allow",
-    "fetch_content": "allow",
     "web_search": "allow",
     "web_search_enhanced": "allow",
+    "fetch_content": "allow",
+    "get_search_content": "allow",
     "subagent": "allow",
     "get_subagent_result": "allow",
-
-
-    // bash 层面：命令模式匹配
-    "bash": {
-      "git status *": "allow",
-      "git rev-parse *": "allow",
-      "git --version *": "allow",
-      "git log *": "allow",
-      "git -C *": "allow",
-      "git diff *": "allow",
-      "git show *": "allow",
-      "git rebase *": "allow",
-      "git merge *": "allow",
-      "git check-ignore *": "allow",
-      "git ls-files *": "allow",
-      "git commit *": "allow",
-      "git push *": "allow",
-      "git pull *": "allow",
-      "git merge-base *": "allow",
-      "git branch *": "allow",
-      "git add *": "allow",
-      "npm test": "allow",
-      "rm -rf *": "ask",
-      "rm *": "ask",
-      "sudo *": "ask",
-      "cp *": "allow",
-      "for *": "allow",
-      "if *": "allow",
-      "tr *": "allow",
-      "date *": "allow",
-      "find *": "allow",
-      "which *": "allow",
-      "grep *": "allow",
-      "echo *": "allow",
-      "head *": "allow",
-      "cd *": "allow",
-      "ls *": "allow",
-      "wc *": "allow",
-      "sort *": "allow",
-      "tail *": "allow",
-      "sed *": "allow",
-      "awk *": "allow",
-      "node *": "allow",
-      "uniq *": "allow",
-      "curl *": "allow",
-      "printf *": "allow",
-      "cat *": "allow",
-      "pdffonts *": "allow",
-      "pwd": "allow",
-      "mkdir": "allow",
-      "python3": "allow"
+    "skill": {
+      "*": "allow"
     },
 
-    "external_directory": "ask"
+    // ===== bash：仅高危 ask，其余 allow =====
+    // 规则顺序：最后一个匹配者胜 → 宽泛规则在前，特例在后。
+    "bash": {
+      "*": "allow",
+
+      // --- 删除 / 覆盖 / 硬写 ---
+      "rm *": "ask",
+      "rmdir *": "ask",
+      "mv *": "ask",
+      "chmod *": "ask",
+      "chown *": "ask",
+      "chattr *": "ask",
+      "ln -sf*": "ask",
+      "truncate *": "ask",
+      "shred *": "ask",
+      "dd *": "ask",
+      "mkfs*": "deny",
+      "fdisk *": "deny",
+      "parted *": "deny",
+      "wipefs *": "deny",
+      "find *-delete*": "ask",
+      "sed -i*": "ask",
+      "sed --in-place*": "ask",
+      "tee *": "ask",
+
+      // --- 提权 / 系统状态 ---
+      "sudo *": "ask",
+      "su *": "ask",
+      "doas *": "ask",
+      "systemctl *": "ask",
+      "service *": "ask",
+      "launchctl *": "ask",
+      "crontab *": "ask",
+      "mount *": "ask",
+      "umount *": "ask",
+      "kill *": "ask",
+      "killall *": "ask",
+      "pkill *": "ask",
+      "reboot": "ask",
+      "shutdown *": "ask",
+      "passwd *": "ask",
+
+      // --- 网络外发 / 远程执行 ---
+      "curl *": "ask",
+      "wget *": "ask",
+      "ssh *": "ask",
+      "scp *": "ask",
+      "rsync *": "ask",
+      "sftp *": "ask",
+      "nc *": "ask",
+      "socat *": "ask",
+      "telnet *": "ask",
+
+      // --- 任意代码执行 ---
+      "python3 -c *": "ask",
+      "python -c *": "ask",
+      "node -e *": "ask",
+      "perl -e *": "ask",
+      "ruby -e *": "ask",
+      "eval *": "ask",
+      "source *": "ask",
+      ". *": "ask",
+      "npm i*": "ask",
+      "npm publish *": "ask",
+      "npx *": "ask",
+      "pnpm *": "ask",
+      "yarn *": "ask",
+      "pip install *": "ask",
+      "pip3 install *": "ask",
+      "uv pip install *": "ask",
+      "make *": "ask",
+      "docker *": "ask",
+
+      // --- git：破坏性 / 外发 ---
+      "git push *": "ask",
+      "git push": "ask",
+      "git reset *": "ask",
+      "git clean *": "ask",
+      "git checkout *": "ask",
+      "git restore *": "ask",
+      "git rebase *": "ask",
+      "git config *": "ask",
+      "git remote *": "ask",
+      "git branch -D *": "ask",
+      "git branch -d *": "ask",
+      "git filter-branch *": "deny",
+      "git filter-repo *": "deny",
+
+      // --- 云 / 发布 ---
+      "aws *": "ask",
+      "gcloud *": "ask",
+      "az *": "ask",
+      "kubectl *": "ask",
+      "helm *": "ask",
+      "terraform *": "ask",
+      "gh *": "ask",
+      "brew *": "ask",
+
+      // --- 补齐非标准拼写（必须放在最后：最后匹配者胜）---
+      "\\rm *": "ask",
+      "/bin/rm *": "ask",
+      "/usr/bin/rm *": "ask",
+      "command rm *": "ask"
+    },
+
+    // 工作目录之外的访问仍然询问
+    "external_directory": {
+      "*": "ask"
+    }
   }
 }
