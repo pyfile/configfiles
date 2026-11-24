@@ -20,6 +20,20 @@ subagent({ subagent_type: "websearcher", prompt: "<the exact question>", descrip
 subagent({ subagent_type: "websearcher_max", prompt: "<the exact question>", description: "<short label>" })
 ```
 
+## Codemode default (mandatory)
+
+Default to codemode for all tasks. Codemode is Pi's sandboxed
+JavaScript/TypeScript execution tool that lets you call other tools from a
+single script, reducing prompt overhead. Do NOT fall back to direct tool calls
+or non-codemode execution unless:
+(a) the user explicitly requests it,
+(b) codemode is unavailable or fails, or
+(c) the task is a pure single-fact lookup that codemode cannot meaningfully wrap.
+
+Web tasks executed inside codemode still follow the existing web search routing
+rules above: delegate to `websearcher` or `websearcher_max` rather than calling
+`web_search`, `web_search_enhanced`, or `fetch_content` directly.
+
 ## Lightweight Verification Policy
 
 Default: do not write or run smoke tests. Do not scaffold test harnesses, start servers, browsers, databases, or external services for routine validation.
